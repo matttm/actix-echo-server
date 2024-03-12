@@ -9,12 +9,12 @@ async fn echo(req_body: String) -> impl Responder {
 async fn main() -> std::io::Result<()> {
     let host = "127.0.0.1";
     let port = 8080;
+    println!("Listening on {}:{}", host, port);
     HttpServer::new(|| {
         App::new()
             .service(echo)
     })
-    .bind(("127.0.0.1", 8080))?
+    .bind((host, port))?
     .run()
-    .await;
-    println!("Listening on {}:{}", host, port);
+    .await
 }
